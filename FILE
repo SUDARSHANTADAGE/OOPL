@@ -1,0 +1,57 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+class file
+{
+char name[10];
+int roll;
+char div;
+
+public:
+           void getdata()
+           {
+           cout<<"enter the name of the student\n";
+           cin>>name;
+           cout<<"enter the roll no of student\n";
+           cin>>roll;
+           cout<<"enter the divsion of student\n";
+           cin>>div;
+           }
+           
+           void display()
+           {
+           cout<<"\n name="<<name;
+           cout<<"\n roll no="<<roll;
+           cout<<"\n division="<<div;
+           }
+};
+           
+int main()
+{
+ file f1[10];
+ fstream f;
+ f.open("sudarshan.txt",ios::out);
+ int i,n;
+ cout<<"enter the no of information of the student";
+ cin>>n;
+ 
+ for(i=0;i<n;i++)
+ {
+ cout<<"enter the information of "<<i+1<<" student";
+ f1[i].getdata();
+ f.write((char*)&f1[i],sizeof(f1[i]));
+ }
+ f.close();
+ 
+ f.open("sudarshan.txt",ios::in);
+ cout<<"for the reading mode";
+ for(i=0;i<n;i++)
+ {
+ cout<<"  information of "<<i+1<<" student";
+ f.read((char*)&f1[i],sizeof(f1[i]));
+ f1[i].display();
+ }
+ f.close();
+ return 0;
+ }
