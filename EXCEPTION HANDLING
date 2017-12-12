@@ -1,0 +1,91 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+class data
+{
+	int age;
+	string city;
+	double income;
+	char fw;
+	int c=0;
+public:
+	void getage()
+	{
+		try
+		{
+			cout<<"Enter age:"<<endl;
+			cin>>age;
+			if(age<18||age>55)
+				throw(age);
+			else
+				c++;
+		}
+		catch(int i)
+		{
+			cout<<"Exception caught: Age should be between 18-55 years"<<endl;
+		}
+	}
+	void getcity()
+	{
+		try
+		{
+			cout<<"Enter the city you live in:"<<endl;
+			cin>>city;
+			if(city=="Pune"||city=="Mumbai"||city=="Bangalore"||city=="Chennai")
+				c++;
+			else
+				throw(city);
+		}
+		catch(string s)
+		{
+			cout<<"Exception caught: City should be either Pune, Mumbai, Bangalore or Chennai"<<endl;
+		}
+	}
+	void getincome()
+	{
+		try
+		{
+			cout<<"Enter monthly income:"<<endl;
+			cin>>income;
+			if(income<50000||income>100000)
+				throw(income);
+			else
+				c++;
+		}
+		catch(double d)
+		{
+			cout<<"Exception caught:Income should be between Rs. 50,000- Rs. 1,00,000"<<endl;
+		}
+	}
+	void fourw()
+	{
+		try
+		{
+			cout<<"Do you have a four wheeler? Y or N"<<endl;
+			cin>>fw;
+			if(fw=='y'||fw=='Y')
+				c++;
+			else
+				throw(fw);
+		}
+		catch(char w)
+		{
+			cout<<"Exception caught: 4 wheeler not present"<<endl;
+		}
+	}
+	void print()
+	{
+		if(c==4)
+			cout<<"No incorrect data provided, thanks";
+	}
+};
+int main()
+{
+	data obj;
+	obj.getage();
+	obj.getincome();
+	obj.getcity();
+	obj.fourw();
+	obj.print();
+	return 0;
+}
