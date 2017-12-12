@@ -1,0 +1,59 @@
+//selection using function templates
+
+#include <iostream>
+using namespace std;
+
+template <class T>
+void sort()
+{
+	int i, j;
+	T temp;
+	T n[5];
+	cout<<"\n Enter five numbers : ";
+	for(i=0;i<5;i++)
+	{
+		cin>>n[i];
+	}
+	for(i=0;i<4;i++)
+	{
+		for(j=i;j<5;j++)
+		{
+			if(n[i]>n[j])
+			{
+				temp=n[i];
+				n[i]=n[j];
+				n[j]=temp;
+			}
+		}
+	}
+	cout<<"\n The array in the sorted order is : "<<endl;
+	for(i=0;i<5;i++)
+	{
+		cout<<"\t"<<n[i];
+	}
+}
+
+
+int main()
+{
+	int choice;
+	char ans;
+	do
+	{
+		cout<<"\n 1. Integer  sort. \n 2. Float sort.";
+		cout<<"\n Enter the input you want to sort : ";
+		cin>>choice;
+		switch(choice)
+		{
+			case 1 : sort<int>();
+					 break;
+			case 2 : sort<float>();
+					 break;
+			case 3 : cout<<"\n Invalid choice.";
+					 break;
+		}
+		cout<<"\n Do u wish to continue (Y/N)?";
+		cin>>ans;
+	}while(ans=='Y' || ans=='y');
+	return 0;
+}
