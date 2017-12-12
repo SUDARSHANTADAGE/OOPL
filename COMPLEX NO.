@@ -1,0 +1,127 @@
+#include<iostream>
+using namespace std;
+
+class complex
+{ 
+         float a,b;
+          
+ public : complex()        
+          { 
+            a=0;
+            b=0;
+	      }
+	 void display();
+         complex(float real,float img)
+             
+        {
+	      a=real;
+	      b=img;
+        }
+friend istream & operator >>(istream &din,complex &c1);
+friend ostream & operator <<(ostream &dout,complex &c1);
+
+complex operator+(complex);
+complex operator-(complex);
+complex operator*(complex);
+complex operator/(complex);
+};
+istream & operator >>(istream &din,complex &c)     ////input overloading
+	{
+		din>>c.a;
+		din>>c.b;
+		return din;
+	}	
+ostream & operator <<(ostream &dout,complex &c1)    ////output overloading
+	{
+		dout<<c1.a;
+		dout<<c1.b;
+		return dout;
+	}
+complex complex::operator+(complex x)                ////addition overloading
+	{
+		complex temp;
+		temp.a=a+x.a;
+		temp.b=b+x.b;
+		return temp;
+	}
+complex complex::operator-(complex x)              ////subtraction overloading
+	{
+		complex temp;
+		temp.a=a-x.a;
+		temp.b=b-x.b;
+		return temp;
+	}
+complex complex::operator*(complex x)              ////multiplication overloading
+	{
+		complex temp;
+		temp.a=((a*x.a)-(b*x.b));
+		temp.b=((a*x.b)+(b*x.a));;
+		return temp;
+	}
+complex complex::operator/(complex x)              ////division overloading
+	{
+		complex temp;
+		temp.a=((a*x.a)-(b*x.b))/((x.a*x.a)-(x.b*x.b));
+		temp.b=((a*x.b)+(b*x.a))/((x.a*x.a)-(x.b*x.b));
+		return temp;
+	}
+void complex::display()                        //////display
+{
+cout<<a<<"+"<<b<<"i";
+}
+
+int main()
+{
+complex c1,c2,c3;
+int c;
+char x;
+do
+{
+cout<<"\n\t MENU: ";                    /////menu
+cout<<"\n\t1. Addition: ";
+cout<<"\n\t2. Subtraction: ";
+cout<<"\n\t3. Multiplication: ";
+cout<<"\n\t4. Division: ";
+cout<<"\n\t Enter your choice ";
+cin>>c;
+
+cout<<"enter first complex no ";
+cin>>c1;
+cout<<"enter second complex no ";
+cin>>c2;
+cout<<"\nFirst complex no= ";
+c1.display();
+cout<<"\nSecond complex no= ";
+c2.display();
+switch(c)
+{
+case 1:               
+	c3=c1+c2;            
+	cout<<"\nAddition = ";
+    c3.display();        
+	break;
+
+
+case 2: 	        
+	c3=c1-c2;                
+	cout<<"\nSubtraction = ";
+    c3.display();        
+	break;
+
+case 3: 	        
+	c3=c1*c2;                
+	cout<<"\nMultiplication = ";
+	c3.display();        
+	break;
+
+case 4: 	        
+	c3=c1/c2;                
+	cout<<"\nDivision = ";
+	c3.display();        
+	break;
+}
+cout<<"\ndo you want to continue?(y/n)";
+cin>>x;
+}
+  while(x=='y'||x=='Y');
+}
